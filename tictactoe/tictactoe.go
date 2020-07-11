@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"regexp"
 	"strconv"
 	"strings"
 )
@@ -42,11 +43,49 @@ func GetWinner(board [][]string, current string) string {
 	return ""
 }
 
+//ReadConsole [1-3] [1-3] 以外の入力を受け付けないコンソール入力関数
+func ReadConsole(reader *bufio.Reader) string {
+	re := regexp.MustCompile("^[1-3] {1}[1-3]$")
+	var input string
+	isValidInput := false
+
+	for !isValidInput {
+		fmt.Print(">> ")
+		input, _ = reader.ReadString('\n')
+		input = strings.Replace(input, "\n", "", -1)
+
+		if !re.MatchString(input) {
+			fmt.Println("invalid input")
+			continue
+		}
+
+		if existsAlready(input) {
+			fmt.Println("The point is already placed.")
+			continue
+		}
+
+		placedAlready = append(placedAlready, input)
+		isValidInput = true
+	}
+	return input
+}
+
+func existsAlready(input string) bool {
+	for _, value := range placedAlready {
+		if value == input {
+			return true
+		}
+	}
+	return false
+}
+
 //Players プレイヤーの表記達
 var Players map[string]string = map[string]string{
 	"circle": " 0",
 	"cross":  " X",
 }
+
+var placedAlready []string
 
 func main() {
 	board := [][]string{
@@ -69,10 +108,9 @@ func main() {
 	for inGame {
 		fmt.Println("input your choice. Inputs are in X and Y order.")
 		fmt.Println("Example) 2 3")
-		fmt.Print(">> ")
 
-		input, _ := reader.ReadString('\n')
-		input = strings.Replace(input, "\n", "", -1)
+		// input, _ := reader.ReadString('\n')
+		input := ReadConsole(reader)
 
 		choiceBuffer := strings.Split(input, " ")
 		choice := []int{}
