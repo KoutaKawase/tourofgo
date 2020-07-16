@@ -14,7 +14,7 @@ package main
 // }
 
 // func (i Image) Bounds() image.Rectangle {
-// 	return image.Rect(0, 0, 256, 256)
+// 	return image.Rect(0, 0, 56, 56)
 // }
 
 // func (i Image) At(x, y int) color.Color {
