@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-PERCENT = 20
+PERCENT = 17
 DIR = "../assets/base"
 OUTPUT_DIR = "../assets/cards"
 MAX = 52

@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	assetsPath = "./assets"
+	assetsPath = "./assets/cards"
 )
 
 //Deck カード５２枚を保持する型
