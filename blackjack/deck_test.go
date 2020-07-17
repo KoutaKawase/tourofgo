@@ -14,11 +14,11 @@ func Testデッキが正しく作られているか(t *testing.T) {
 		t.Errorf("expected length == %d, actual %d", expectedLength, len(deck.cards))
 	}
 
-	if deck.cards[0] != expectedFirst {
+	if deck.cards[0].rank != expectedFirst.rank || deck.cards[0].suit != expectedFirst.suit {
 		t.Errorf("expected first card == %v, actual %v", expectedFirst, deck.cards[0])
 	}
 
-	if deck.cards[last] != expectedLast {
+	if deck.cards[last].rank != expectedLast.rank || deck.cards[last].suit != expectedLast.suit {
 		t.Errorf("expected last card == %v, actual %v", expectedLast, deck.cards[last])
 	}
 }
