@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"image/color"
 	"log"
 
@@ -37,23 +36,11 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 	return outsideWidth, outsideHeight
 }
 
-func createDeck() Deck {
-	var cards []Card
-
-	for _, suit := range Suits {
-		for _, rank := range Ranks {
-			cards = append(cards, Card{suit, rank})
-		}
-	}
-	return Deck{cards}
-}
-
 func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
 	ebiten.SetWindowTitle("Blackjack")
 
-	deck := createDeck()
-	fmt.Println(deck)
+	deck := CreateDeck()
 	game := Game{deck}
 
 	if err := ebiten.RunGame(&game); err != nil {
