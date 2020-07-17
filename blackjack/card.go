@@ -59,3 +59,10 @@ type Card struct {
 func (c Card) String() string {
 	return fmt.Sprintf("Suit: %v, Rank: %v", c.suit, c.rank)
 }
+
+//Show カード一枚を画面に表示する役割
+func (c *Card) Show(x, y float64, screen *ebiten.Image) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(x, y)
+	screen.DrawImage(c.img, op)
+}

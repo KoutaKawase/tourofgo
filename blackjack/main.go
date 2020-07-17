@@ -31,9 +31,8 @@ func (g *Game) Update(screen *ebiten.Image) error {
 //Draw 全てのフレームで呼ばれる描画関数
 func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(boardColor)
-	op := &ebiten.DrawImageOptions{}
-	op.GeoM.Translate(64, 64)
-	screen.DrawImage(g.player.hands[0].img, op)
+
+	g.player.Show(screen)
 }
 
 //Layout ゲーム画面サイズ
