@@ -57,5 +57,5 @@ type Card struct {
 }
 
 func (c Card) String() string {
-	return fmt.Sprintf("Suit: %v, Rank: %v, Img: %v", c.suit, c.rank, c.img)
+	return fmt.Sprintf("Suit: %v, Rank: %v", c.suit, c.rank)
 }

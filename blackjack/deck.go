@@ -4,7 +4,9 @@ import (
 	"bytes"
 	"fmt"
 	"log"
+	"math/rand"
 	"path"
+	"time"
 
 	"github.com/hajimehoshi/ebiten"
 	"github.com/hajimehoshi/ebiten/ebitenutil"
@@ -25,6 +27,28 @@ func (d Deck) String() string {
 		buffer.WriteString(fmt.Sprintf("%v\n", card))
 	}
 	return buffer.String()
+}
+
+//Shuffle デッキの中のカードをシャッフルする
+func (d *Deck) Shuffle() {
+	deck := d.cards
+	rand.Seed(time.Now().UnixNano())
+	rand.Shuffle(len(deck), func(i, j int) {
+		deck[i], deck[j] = deck[j], deck[i]
+	})
+}
+
+//Distribute 最初に配るときに呼ばれる。呼ばれる度２枚のカードをポップして返す
+func (d *Deck) Distribute() []Card {
+	var cards []Card
+
+	for i := 0; i < 2; i++ {
+		last, popedDeck := d.cards[len(d.cards)-1], d.cards[:len(d.cards)-1]
+		cards = append(cards, last)
+		d.cards = popedDeck
+	}
+
+	return cards
 }
 
 func getCardAsset(count int) *ebiten.Image {
