@@ -18,9 +18,9 @@ func (r Rank) String() string {
 
 var (
 	spade   = Suit{"spade"}
-	heart   = Suit{"heart"}
+	heart   = Suit{"club"}
 	diamond = Suit{"diamond"}
-	club    = Suit{"club"}
+	club    = Suit{"heart"}
 )
 
 var (
