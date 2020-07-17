@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image/color"
 	"log"
 
@@ -8,8 +9,8 @@ import (
 )
 
 const (
-	windowWidth  = 640
-	windowHeight = 480
+	windowWidth  = 740
+	windowHeight = 580
 )
 
 var (
@@ -17,7 +18,9 @@ var (
 )
 
 //Game ebiten.Gameインターフェースを実装
-type Game struct{}
+type Game struct {
+	deck Deck
+}
 
 //Update ゲームループ的な
 func (g *Game) Update(screen *ebiten.Image) error {
@@ -34,10 +37,26 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 	return outsideWidth, outsideHeight
 }
 
+func createDeck() Deck {
+	var cards []Card
+
+	for _, suit := range Suits {
+		for _, rank := range Ranks {
+			cards = append(cards, Card{suit, rank})
+		}
+	}
+	return Deck{cards}
+}
+
 func main() {
 	ebiten.SetWindowSize(windowWidth, windowHeight)
-	ebiten.SetWindowTitle("Hello from ebiten!")
-	if err := ebiten.RunGame(&Game{}); err != nil {
+	ebiten.SetWindowTitle("Blackjack")
+
+	deck := createDeck()
+	fmt.Println(deck)
+	game := Game{deck}
+
+	if err := ebiten.RunGame(&game); err != nil {
 		log.Fatal(err)
 	}
 }
