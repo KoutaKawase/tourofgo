@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/hajimehoshi/ebiten"
+)
 
 //Suit エースやクローバーなどを表す
 type Suit struct{ value string }
@@ -49,8 +53,9 @@ var Ranks []Rank = []Rank{ace, deuce, trey, cater, cinque, sice, seven, eight, n
 type Card struct {
 	suit Suit
 	rank Rank
+	img  *ebiten.Image
 }
 
 func (c Card) String() string {
-	return fmt.Sprintf("Suit: %v Rank: %v", c.suit, c.rank)
+	return fmt.Sprintf("Suit: %v, Rank: %v, Img: %v", c.suit, c.rank, c.img)
 }

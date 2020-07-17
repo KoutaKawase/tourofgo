@@ -4,8 +4,8 @@ import "testing"
 
 func Testデッキが正しく作られているか(t *testing.T) {
 	expectedLength := 52
-	expectedFirst := Card{Suit{"spade"}, Rank{1}}
-	expectedLast := Card{Suit{"heart"}, Rank{13}}
+	expectedFirst := Card{Suit{"spade"}, Rank{1}, nil}
+	expectedLast := Card{Suit{"heart"}, Rank{13}, nil}
 
 	deck := CreateDeck()
 	last := expectedLength - 1
