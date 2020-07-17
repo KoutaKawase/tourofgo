@@ -31,6 +31,9 @@ func (g *Game) Update(screen *ebiten.Image) error {
 //Draw 全てのフレームで呼ばれる描画関数
 func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(boardColor)
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(64, 64)
+	screen.DrawImage(g.player.hands[0].img, op)
 }
 
 //Layout ゲーム画面サイズ
@@ -40,6 +43,8 @@ func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeigh
 
 func (g *Game) init() {
 	g.deck.Shuffle()
+	g.player = Player{g.deck.Distribute()}
+	g.dealer = Dealer{g.deck.Distribute()}
 }
 
 func main() {
