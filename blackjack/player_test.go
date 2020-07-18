@@ -4,9 +4,9 @@ import "testing"
 
 func Test期待するプレイヤー手札の座標が返ってくるか(t *testing.T) {
 	// 	１つめはdefaultX(100)
-	// ２つめはdefaultX(100) + cardwidth(121) + marginRight(10)で231になってほしい
-	// 3つめならdefaultX(100) + (cardwidth(121) + marginRight(10)) * 2で362になって欲しい
-	// 4つめなら100 + (121 + 10) * 3で493になって欲しい
+	// ２つめはdefaultX(100) + cardwidth(121) + marginRight(40)で231になってほしい
+	// 3つめならdefaultX(100) + (cardwidth(121) + marginRight(40)) * 2で362になって欲しい
+	// 4つめなら100 + (121 + 40) * 3で493になって欲しい
 	cases := []struct {
 		index int
 		wantX float64

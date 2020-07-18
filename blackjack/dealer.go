@@ -24,7 +24,14 @@ func (d Dealer) String() string {
 
 //Show ディーラーの手札を表示する
 func (d *Dealer) Show(s *ebiten.Image) {
-	for _, card := range d.hands {
-		card.Show(DealerX, DealerY, s)
+	for i, card := range d.hands {
+		x := CalcDealerX(i)
+		card.Show(x, DealerY, s)
 	}
+}
+
+//CalcDealerX ディーラーのX座標を計算し返す
+func CalcDealerX(index int) float64 {
+	x := DealerX - (CardWidth+MarginRight)*index
+	return float64(x)
 }

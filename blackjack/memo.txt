@@ -14,6 +14,12 @@
 プレイヤー手札のy座標は全て同じ
 ↓
 １つめはdefaultX(100)
-２つめはdefaultX(100) + cardwidth(121) + marginRight(10)で231になってほしい
-3つめならdefaultX(100) + (cardwidth(121) + marginRight(10)) * 2で361になって欲しい
-4つめなら100 + (121 + 10) * 3で493になって欲しい
+２つめはdefaultX(100) + cardwidth(121) + marginRight(40)で231になってほしい
+3つめならdefaultX(100) + (cardwidth(121) + marginRight(40)) * 2で361になって欲しい
+4つめなら100 + (121 + 40) * 3で493になって欲しい
+
+ディーラー手札座標計算
+１つめはdefaultX(500)
+2つめはdefaultX(500) - (cardwidth(121) + marginRight(40)) で 339
+3つめは500 - (121 + 40) * 2 で 178
+4つめは500 - (121 + 40) * 3 で 17
