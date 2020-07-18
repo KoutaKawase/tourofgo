@@ -7,10 +7,10 @@ import (
 )
 
 const (
-	//DefaultY カード一枚目のY座標　Y座標は全ての手札に固定
-	DefaultY = 400
-	//DefaultX カード一枚目のX座標
-	DefaultX = 100
+	//PlayerY カード一枚目のデフォルトY座標　Y座標は全ての手札に固定
+	PlayerY = 400
+	//PlayerX カード一枚目のデフォルトX座標
+	PlayerX = 100
 )
 
 //Player あなた自身が操作するもの
@@ -26,12 +26,12 @@ func (p Player) String() string {
 func (p *Player) Show(s *ebiten.Image) {
 	for i, card := range p.hands {
 		x := CalcPlayerX(i)
-		card.Show(x, DefaultY, s)
+		card.Show(x, PlayerY, s)
 	}
 }
 
 //CalcPlayerX プレイヤー手札の座標を出す関数。indexはプレイヤー手札の何枚目か。何枚目かから座標を算出する
 func CalcPlayerX(index int) float64 {
-	x := DefaultX + (CardWidth+MarginRight)*index
+	x := PlayerX + (CardWidth+MarginRight)*index
 	return float64(x)
 }

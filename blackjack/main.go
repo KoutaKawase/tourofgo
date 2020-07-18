@@ -33,6 +33,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(boardColor)
 
 	g.player.Show(screen)
+	g.dealer.Show(screen)
 }
 
 //Layout ゲーム画面サイズ
