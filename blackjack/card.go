@@ -49,6 +49,15 @@ var Suits []Suit = []Suit{spade, heart, diamond, club}
 //Ranks デッキ作成時に使うRank達
 var Ranks []Rank = []Rank{ace, deuce, trey, cater, cinque, sice, seven, eight, nine, ten, jack, queen, king}
 
+//CardWidth カード一つ分の幅
+var CardWidth int = 121
+
+//CardHeight カード一つ分の高さ
+var CardHeight int = 171
+
+//MarginRight カード間の隙間
+var MarginRight int = 40
+
 //Card カード一枚を指す型
 type Card struct {
 	suit Suit
