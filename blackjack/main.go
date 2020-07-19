@@ -21,6 +21,8 @@ type Game struct {
 	deck   Deck
 	player Player
 	dealer Dealer
+	//全てのプレイヤーの行動が終了しているか
+	isAllDone bool
 }
 
 //Update ゲームループ的な
@@ -33,7 +35,7 @@ func (g *Game) Draw(screen *ebiten.Image) {
 	screen.Fill(boardColor)
 
 	g.player.Show(screen)
-	g.dealer.Show(screen)
+	g.dealer.Show(screen, g.isAllDone)
 }
 
 //Layout ゲーム画面サイズ
@@ -54,7 +56,7 @@ func main() {
 	deck := CreateDeck()
 	player := Player{}
 	dealer := Dealer{}
-	game := Game{deck, player, dealer}
+	game := Game{deck, player, dealer, false}
 	game.init()
 
 	if err := ebiten.RunGame(&game); err != nil {

@@ -60,9 +60,10 @@ var MarginRight int = 40
 
 //Card カード一枚を指す型
 type Card struct {
-	suit Suit
-	rank Rank
-	img  *ebiten.Image
+	suit    Suit
+	rank    Rank
+	surface *ebiten.Image
+	back    *ebiten.Image
 }
 
 func (c Card) String() string {
@@ -73,5 +74,12 @@ func (c Card) String() string {
 func (c *Card) Show(x, y float64, screen *ebiten.Image) {
 	op := &ebiten.DrawImageOptions{}
 	op.GeoM.Translate(x, y)
-	screen.DrawImage(c.img, op)
+	screen.DrawImage(c.surface, op)
+}
+
+//ShowBack カードの背面を表示する
+func (c *Card) ShowBack(x, y float64, screen *ebiten.Image) {
+	op := &ebiten.DrawImageOptions{}
+	op.GeoM.Translate(x, y)
+	screen.DrawImage(c.back, op)
 }

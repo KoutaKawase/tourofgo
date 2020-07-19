@@ -23,10 +23,15 @@ func (d Dealer) String() string {
 }
 
 //Show ディーラーの手札を表示する
-func (d *Dealer) Show(s *ebiten.Image) {
+func (d *Dealer) Show(s *ebiten.Image, isAllDone bool) {
 	for i, card := range d.hands {
 		x := CalcDealerX(i)
-		card.Show(x, DealerY, s)
+		//一枚だけ伏せて表示したいのでiが0の時だけ背面表示している
+		if !isAllDone && i == 0 {
+			card.ShowBack(x, DealerY, s)
+		} else {
+			card.Show(x, DealerY, s)
+		}
 	}
 }
 

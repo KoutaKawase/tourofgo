@@ -67,13 +67,19 @@ func getCardAsset(count int) *ebiten.Image {
 //CreateDeck 計52枚のトランプデッキを作成します。一枚一枚はCard構造体で表されます
 func CreateDeck() Deck {
 	var cards []Card
+	commonBack, _, err := ebitenutil.NewImageFromFile("./assets/back.png", ebiten.FilterDefault)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	//カードが現在何枚目を指しているか保持する用
 	count := 1
 
 	for _, suit := range Suits {
 		for _, rank := range Ranks {
 			img := getCardAsset(count)
-			cards = append(cards, Card{suit, rank, img})
+			cards = append(cards, Card{suit, rank, img, commonBack})
 			count++
 		}
 	}
